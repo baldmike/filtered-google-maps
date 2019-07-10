@@ -7,10 +7,6 @@
         drop-placeholder="Drop file here..."
         @change="onFileChange"
         ></b-form-file>
-
-        <div class="mt-3">Selected file: {{ csvFile ? csvFile.name : '' }}</div>
-
-        
     </div>
 </template>
 
@@ -30,29 +26,35 @@
         methods: {
             onFileChange(e) {
 
-                const file = e.target.files[0];
+                const self = this
                 
-                console.log(file);
-
-                const that = this
                 const fileToLoad = event.target.files[0]
+
                 const reader = new FileReader()
+
                 reader.onload = fileLoadedEvent => {
-                Papa.parse(fileLoadedEvent.target.result, {
-                    header: true,
-                    complete (results) {
-                    console.log('Parse Complete', results)
-                    that.doc = JSON.stringify(results.data, null, 2)
-                    },
-                    error (errors) {
-                    console.log('error', errors)
-                    }
-                })
+                    Papa.parse(fileLoadedEvent.target.result, {
+                        header: true,
+                        complete (results) {
+                            console.log('Parse Complete', results)
+                            self.csvFile = JSON.stringify(results.data, null, 2)
+
+                            console.log("THIS DOT CSVFILE  " + results);
+
+                            self.$store.dispatch('setFile', results.data);
+                        },
+                        error (errors) {
+                            console.log('error', errors)
+                        }
+                    })
                 }
                 reader.readAsText(fileToLoad)
 
+                
 
-                // NO NOT REMOVE -- THIS SHOWS ALL OF PAPA PARSE'S DEFAULTS
+                
+
+                // NO NOT REMOVE -- PAPA PARSE'S DEFAULTS
                 // Papa.parse(file, {
                 //     delimiter: "",	// auto-detect
                 //     newline: "",	// auto-detect
