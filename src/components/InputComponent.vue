@@ -7,9 +7,11 @@
             drop-placeholder="Drop file here..."
             @change="onFileChange"/>
 
+        
         <div v-for="value in $store.state.file" v-bind:key="value[0]">
                 {{ value["Full Address"] }}
         </div>
+        
     </div>
 </template>
 
@@ -39,13 +41,15 @@
                     Papa.parse(fileLoadedEvent.target.result, {
                         header: true,
                         complete (results) {
+                            // eslint-disable-next-line no-console
+
                             self.csvFile = JSON.stringify(results.data, null, 2)
 
                             self.$store.dispatch('setFile', results.data);
 
                             let marker = new google.maps.Marker({
                             position: new google.maps.LatLng(self.$store.state.file[0][1], self.$store.state.file[0][2]),
-                            
+                            map: map
                             });
                         },
                         error (errors) {

@@ -19,8 +19,8 @@ export default {
             const locations = [{
     
                 position: {
-                    lat: 41.881832,
-                    lng: -87.623177,
+                    lat: 41.8857718,
+                    lng: -87.6656355,
                 },
             }];
 
