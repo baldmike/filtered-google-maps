@@ -1,15 +1,12 @@
 <template>
     <div class="container">
         <b-form-file
-            v-model="csvFile"
-            :state="Boolean(csvFile)"
+            :state="Boolean($store.state.file)"
             placeholder="Select CSV file"
             drop-placeholder="Drop file here..."
             @change="onFileChange"/>
-
-        
         <div v-for="value in $store.state.file" v-bind:key="value[0]">
-                {{ value["Full Address"] }}
+                {{ value["Longitude"] }}  {{ value["Latitude"] }}
         </div>
         
     </div>
@@ -24,7 +21,7 @@
         
         data() {
             return {
-                csvFile: null
+                // csvFile: null
             }
         },
         
@@ -43,7 +40,7 @@
                         complete (results) {
                             // eslint-disable-next-line no-console
 
-                            self.csvFile = JSON.stringify(results.data, null, 2)
+                            // self.csvFile = JSON.stringify(results.data, null, 2)
 
                             self.$store.dispatch('setFile', results.data);
 

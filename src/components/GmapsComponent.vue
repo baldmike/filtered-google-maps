@@ -14,23 +14,13 @@ export default {
         try {
             const google = await gmapsInit();
             const geocoder = new google.maps.Geocoder();
-            const map = new google.maps.Map(this.$el);
-            
-            if(this.$store.state.file) {
-                const locations = this.$store.state.file;
-            } 
+            const map = new google.maps.Map(this.$el); 
             
             const locations = [{
     
                 position: {
-                    lat: 48.160910,
-                    lng: 16.383330,
-                },
-            },
-            {
-                position: {
-                    lat: 48.174270,
-                    lng: 16.329620,
+                    lng: -87.6654184,
+                    lat: 41.8690534,
                 },
             }];
 
