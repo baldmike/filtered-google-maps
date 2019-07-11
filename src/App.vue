@@ -1,16 +1,33 @@
 <template>
 
     <div id="app">
-        <div class="container-fluid">
+        <div class="container">
             <b-row>
-                <div class="col-4">
+                <b-col cols="4">
                     <input-component/>
-                    
-                </div>
-                
-                <div class="col-8">
-                    <gmaps-component/>
-                </div>
+                </b-col>
+
+                <b-col cols="8">
+                    <GmapMap
+                        :center="{lat:42, lng:-88}"
+                        :zoom="9"
+                        map-type-id="terrain"
+                        style="width: 50vw; height: 500px;"
+                        >
+                        <GmapMarker
+                            :key="index"
+                            ref="theMarker"
+                            v-for="(m, index) in markers"
+                            :position="new google.maps.LatLng(m[`Latitude`], m[`Longitude`])"
+                            :clickable="true"
+                            :draggable="true"
+                            @click="center=m.position"
+                        />
+                    </GmapMap>
+
+                    {{ markers }}
+
+                </b-col>
             </b-row>
         </div>
     </div>
@@ -18,16 +35,25 @@
 
 <script>
 
-    import GmapsComponent from './components/GmapsComponent.vue'
+    
     import InputComponent from './components/InputComponent.vue'
+    import {gmapApi} from 'vue2-google-maps'
     
 
     export default {
         name: 'app',
         components: {
-            GmapsComponent,
+            
             InputComponent,
             
+        },
+
+        computed: {
+            markers () {
+                return this.$store.state.file;
+            },
+
+            google: gmapApi
         }
     }
 
@@ -45,3 +71,5 @@
     }
 
 </style>
+
+
