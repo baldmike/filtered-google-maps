@@ -47,10 +47,6 @@
 
                             self.$store.dispatch('setFile', results.data);
 
-                            let marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(self.$store.state.file[0][1], self.$store.state.file[0][2]),
-                            map: map
-                            });
                         },
                         error (errors) {
                             // eslint-disable-next-line no-console

@@ -16,11 +16,21 @@ export default {
             const geocoder = new google.maps.Geocoder();
             const map = new google.maps.Map(this.$el);
             
+            if(this.$store.state.file) {
+                const locations = this.$store.state.file;
+            } 
+            
             const locations = [{
     
                 position: {
-                    lat: 41.8857718,
-                    lng: -87.6656355,
+                    lat: 48.160910,
+                    lng: 16.383330,
+                },
+            },
+            {
+                position: {
+                    lat: 48.174270,
+                    lng: 16.329620,
                 },
             }];
 
@@ -46,7 +56,6 @@ export default {
                 return marker;
             });
             
-            
             new MarkerClusterer(map, markers, {
             
                 imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
@@ -54,7 +63,7 @@ export default {
             })
 
         } 	catch (error) {
-
+            
             // eslint-disable-next-line no-console
             console.error(error);
 
