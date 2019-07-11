@@ -19,18 +19,12 @@ export default {
             const locations = [{
     
                 position: {
-                    lat: 48.160910,
-                    lng: 16.383330,
-                },
-            },
-            {
-                position: {
-                    lat: 48.174270,
-                    lng: 16.329620,
+                    lat: 41.881832,
+                    lng: -87.623177,
                 },
             }];
 
-            geocoder.geocode({ address: 'Austria' }, (results, status) => {
+            geocoder.geocode({ address: 'Chicago' }, (results, status) => {
                 if (status !== 'OK' || !results[0]) {
                     throw new Error(status);
                 }
@@ -52,6 +46,7 @@ export default {
                 return marker;
             });
             
+            
             new MarkerClusterer(map, markers, {
             
                 imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
@@ -59,8 +54,8 @@ export default {
             })
 
         } 	catch (error) {
-            
-            // eslint-disable-next-line
+
+            // eslint-disable-next-line no-console
             console.error(error);
 
         }

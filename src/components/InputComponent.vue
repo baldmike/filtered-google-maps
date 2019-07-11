@@ -1,12 +1,15 @@
 <template>
     <div class="container">
         <b-form-file
-        v-model="csvFile"
-        :state="Boolean(csvFile)"
-        placeholder="Select CSV file"
-        drop-placeholder="Drop file here..."
-        @change="onFileChange"
-        ></b-form-file>
+            v-model="csvFile"
+            :state="Boolean(csvFile)"
+            placeholder="Select CSV file"
+            drop-placeholder="Drop file here..."
+            @change="onFileChange"/>
+
+        <div v-for="value in $store.state.file" v-bind:key="value[0]">
+                {{ value["Full Address"] }}
+        </div>
     </div>
 </template>
 
@@ -36,23 +39,22 @@
                     Papa.parse(fileLoadedEvent.target.result, {
                         header: true,
                         complete (results) {
-                            console.log('Parse Complete', results)
                             self.csvFile = JSON.stringify(results.data, null, 2)
 
-                            console.log("THIS DOT CSVFILE  " + results);
-
                             self.$store.dispatch('setFile', results.data);
+
+                            let marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(self.$store.state.file[0][1], self.$store.state.file[0][2]),
+                            
+                            });
                         },
                         error (errors) {
+                            // eslint-disable-next-line no-console
                             console.log('error', errors)
                         }
                     })
                 }
                 reader.readAsText(fileToLoad)
-
-                
-
-                
 
                 // NO NOT REMOVE -- PAPA PARSE'S DEFAULTS
                 // Papa.parse(file, {
