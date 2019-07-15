@@ -2,16 +2,18 @@
 
     <div id="app" >
             <b-row>
-                <b-col>
+                <b-col cols="4">
                     <input-component/>
 
-                    <br>
-                
+                    
+                </b-col>
+
+                <b-col cols="8">
                     <GmapMap
                         :center="{lat:42, lng:-88}"
                         :zoom="10"
                         map-type-id="terrain"
-                        style="width: 100vw; height: 80vh;"
+                        style="width: 100%; height: 80vh;"
                         >
                         <GmapMarker
                             :key="index"
