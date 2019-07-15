@@ -11,7 +11,7 @@
                 <b-col cols="8">
                     <GmapMap
                         :center="{lat:42, lng:-88}"
-                        :zoom="10"
+                        :zoom="11"
                         map-type-id="terrain"
                         style="width: 100%; height: 80vh;"
                         >
