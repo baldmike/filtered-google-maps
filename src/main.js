@@ -8,6 +8,7 @@ import store from './store'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 import {GmapMarker} from 'vue2-google-maps/src/components/marker'
+import GmapCluster from 'vue2-google-maps/dist/components/cluster'
 
 
 
@@ -44,6 +45,7 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
 Vue.component('GmapMarker', GmapMarker)
+Vue.component('GmapCluster', GmapCluster)
 
 new Vue({
   render: h => h(App),

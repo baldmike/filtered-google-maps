@@ -9,7 +9,7 @@
                 
                     <GmapMap
                         :center="{lat:42, lng:-88}"
-                        :zoom="9"
+                        :zoom="10"
                         map-type-id="terrain"
                         style="width: 100vw; height: 80vh;"
                         >
@@ -22,9 +22,6 @@
                             @click="center=m.position"
                         />
                     </GmapMap>
-
-                    {{ markers }}
-
                 </b-col>
             </b-row>
     </div>
