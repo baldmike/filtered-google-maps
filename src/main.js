@@ -6,7 +6,6 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './store'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
-
 import {GmapMarker} from 'vue2-google-maps/src/components/marker'
 import GmapCluster from 'vue2-google-maps/dist/components/cluster'
 
