@@ -7,7 +7,9 @@
 
                     <br>
 
-                    <h5>Please select a minimum and maximum price.</h5>
+                    <h5>You may select a minimum and maximum price.</h5>
+                    <h5>Double click the group pin to zoom and expose individual pins.</h5>
+                    <h5>Double click individual pins to see address</h5>
 
                     <br>
 
@@ -95,7 +97,7 @@
             },
             toggleInfo: function(marker, key) {
                 this.infoPosition = this.getPosition(marker.position)
-                this.infoContent = marker.data["ESTIMATED_MARKET_VALUE"]
+                this.infoContent = marker.data["Full Address"]
                 if (this.infoCurrentKey == key) {
                     this.infoOpened = !this.infoOpened
                 } else {
@@ -118,9 +120,8 @@
                 let filterResults = [];
 
                 if(this.minimumPrice){
-                    let allMarkers = this.$store.state.file.filter(home => home.data.ESTIMATED_MARKET_VALUE >= self.minimumPrice && home.data.ESTIMATED_MARKET_VALUE <= this.maximumPrice);
+                    let allMarkers = this.$store.state.file.filter(home => home.data.ESTIMATED_MARKET_VALUE >= self.minimumPrice && home.data.ESTIMATED_MARKET_VALUE <= self.maximumPrice);
 
-                    console.log("MIN PRICE: " + self.minimumPrice)
                     return allMarkers;
                 }
                 
