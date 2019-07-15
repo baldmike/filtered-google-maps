@@ -15,6 +15,7 @@
                         map-type-id="terrain"
                         style="width: 100%; height: 80vh;"
                         >
+                        <gmap-cluster>
                         <GmapMarker
                             :key="index"
                             v-for="(m, index) in markers"
@@ -23,6 +24,7 @@
                             :draggable="true"
                             @click="center=m.position"
                         />
+                        </gmap-cluster>
                     </GmapMap>
                 </b-col>
             </b-row>
@@ -46,12 +48,17 @@
 
         computed: {
             markers () {
+
                 return this.$store.state.file;
+
             },
 
             google: gmapApi
-        }, 
+
+        },
+
         mounted() {
+
             console.log(process.env.NODE_ENV);
 
         }
