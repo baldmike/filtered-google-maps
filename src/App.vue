@@ -5,18 +5,33 @@
                 <b-col cols="4">
                     <input-component/>
 
-                    <b-form-checkbox
-                            id="checkbox-1"
-                            v-model="price"
-                            name="checkbox-1"
-                            value="accepted"
-                            unchecked-value=""/>
-                    
+                    <br>
+
+                    <h5>Please select a minimum and maximum price.</h5>
+
+                    <br>
+
+                    <b-row>
+                        <b-col cols="4">Minimum</b-col>
+                        <b-col cols="8">
+                            <b-input-group size="md" prepend="$" append=".00" label="Minimum">
+                                <b-form-input v-model="minimumPrice"></b-form-input>
+                            </b-input-group>
+                        </b-col>
+
+                        <b-col cols="4">Maximum</b-col>
+                        <b-col cols="8">
+                            <b-input-group size="md" prepend="$" append=".00" label="Maximum">
+                                <b-form-input v-model="maximumPrice"></b-form-input>
+                            </b-input-group>
+                        </b-col>
+                    </b-row>
+
                 </b-col>
 
                 <b-col cols="8">
                     <GmapMap
-                        :center="{lat:41.8, lng:-87.7}"
+                        :center="{lat:41.9, lng:-87.7}"
                         :zoom="11"
                         map-type-id="terrain"
                         style="width: 100%; height: 80vh;"
@@ -31,6 +46,7 @@
                                 :position="m.position"
                                 :clickable="true"
                                 :draggable="true"
+                                
                                 @click="toggleInfo(m, index)"/>
                         </gmap-cluster>
                     </GmapMap>
@@ -60,7 +76,10 @@
                         height: -35
                     }
                 },
-                price: false,
+                price: true,
+                minimumPrice: null,
+                maximumPrice: null,
+                filterResults: null
             }
         },
 
@@ -76,7 +95,7 @@
             },
             toggleInfo: function(marker, key) {
                 this.infoPosition = this.getPosition(marker.position)
-                this.infoContent = marker.data
+                this.infoContent = marker.data["ESTIMATED_MARKET_VALUE"]
                 if (this.infoCurrentKey == key) {
                     this.infoOpened = !this.infoOpened
                 } else {
@@ -93,10 +112,20 @@
         },
 
         computed: {
-            markers () {
 
+            markers() {
+                let self=this;
+                let filterResults = [];
+
+                if(this.minimumPrice){
+                    let allMarkers = this.$store.state.file.filter(home => home.data.ESTIMATED_MARKET_VALUE >= self.minimumPrice && home.data.ESTIMATED_MARKET_VALUE <= this.maximumPrice);
+
+                    console.log("MIN PRICE: " + self.minimumPrice)
+                    return allMarkers;
+                }
+                
                 return this.$store.state.file;
-
+                
             },
 
             google: gmapApi
