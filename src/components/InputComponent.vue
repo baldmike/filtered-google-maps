@@ -42,19 +42,18 @@
 
                             // self.csvFile = JSON.stringify(results.data, null, 2)
 
-                            var positions = new Array();
+
+                            var homeMarkers = new Array();
                             
+                            // pull the lat/lon out and make a 'position' object for marker
                             results.data.forEach(row => {
                                 let lat = parseFloat(row['Latitude']);
                                 let lon = parseFloat(row['Longitude']);
-                                let latlon = {position: {'lat':lat, 'lng': lon}};
-                                positions.push(latlon);
+                                let latlon = {position: {'lat':lat, 'lng': lon}, data: row };
+                                homeMarkers.push(latlon);
                             });
 
-                            self.$store.dispatch('setFile', positions);
-
-                            // self.$store.dispatch('setFile', results.data);
-
+                            self.$store.dispatch('setFile', homeMarkers);
                         },
                         error (errors) {
                             // eslint-disable-next-line no-console
