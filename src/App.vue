@@ -16,7 +16,7 @@
                         <GmapMarker
                             :key="index"
                             v-for="(m, index) in markers"
-                            :position="new google.maps.LatLng(m[`Latitude`], m[`Longitude`])"
+                            :position="m.position"
                             :clickable="true"
                             :draggable="true"
                             @click="center=m.position"
@@ -54,6 +54,7 @@
         }, 
         mounted() {
             console.log(process.env.NODE_ENV);
+
         }
     }
 

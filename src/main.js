@@ -7,6 +7,10 @@ import store from './store'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
 
+import {GmapMarker} from 'vue2-google-maps/src/components/marker'
+
+
+
 Vue.use(VueGoogleMaps, {
   load: {
     region: 'US',
@@ -38,6 +42,8 @@ Vue.use(VueGoogleMaps, {
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
+
+Vue.component('GmapMarker', GmapMarker)
 
 new Vue({
   render: h => h(App),
