@@ -1,22 +1,20 @@
 <template>
 
-    <div id="app">
-        <div class="container">
+    <div id="app" >
             <b-row>
-                <b-col cols="4">
+                <b-col>
                     <input-component/>
-                </b-col>
 
-                <b-col cols="8">
+                    <br>
+                
                     <GmapMap
                         :center="{lat:42, lng:-88}"
                         :zoom="9"
                         map-type-id="terrain"
-                        style="width: 50vw; height: 500px;"
+                        style="width: 100vw; height: 80vh;"
                         >
                         <GmapMarker
                             :key="index"
-                            ref="theMarker"
                             v-for="(m, index) in markers"
                             :position="new google.maps.LatLng(m[`Latitude`], m[`Longitude`])"
                             :clickable="true"
@@ -29,7 +27,6 @@
 
                 </b-col>
             </b-row>
-        </div>
     </div>
 </template>
 
@@ -54,6 +51,9 @@
             },
 
             google: gmapApi
+        }, 
+        mounted() {
+            console.log(process.env.NODE_ENV);
         }
     }
 

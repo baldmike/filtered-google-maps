@@ -11,7 +11,7 @@ Vue.use(VueGoogleMaps, {
   load: {
     region: 'US',
     language: 'en',
-    key: 'AIzaSyByNrtjh_Nl0Cyi8TiWnb-9Gw5ZaapgomY',
+    key: process.env.VUE_APP_GMAP_KEY
     
     // OR: libraries: 'places,drawing'
     // OR: libraries: 'places,drawing,visualization'

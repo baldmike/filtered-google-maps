@@ -42,7 +42,18 @@
 
                             // self.csvFile = JSON.stringify(results.data, null, 2)
 
-                            self.$store.dispatch('setFile', results.data);
+                            var positions = new Array();
+                            
+                            results.data.forEach(row => {
+                                let lat = parseFloat(row['Latitude']);
+                                let lon = parseFloat(row['Longitude']);
+                                let latlon = {position: {'lat':lat, 'lng': lon}};
+                                positions.push(latlon);
+                            });
+
+                            self.$store.dispatch('setFile', positions);
+
+                            // self.$store.dispatch('setFile', results.data);
 
                         },
                         error (errors) {
