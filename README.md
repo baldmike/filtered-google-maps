@@ -1,4 +1,4 @@
-# g-maps-challenge
+# Filtered-Google-Maps
 
 ## Project setup
 ```
