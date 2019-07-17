@@ -3,12 +3,7 @@
         <b-form-file
             :state="Boolean($store.state.file)"
             placeholder="Select CSV file"
-            drop-placeholder="Drop file here..."
             @change="onFileChange"/>
-        <div v-for="value in $store.state.file" v-bind:key="value[0]">
-                {{ value["Longitude"] }}  {{ value["Latitude"] }}
-        </div>
-        
     </div>
 </template>
 
@@ -26,7 +21,7 @@
         },
         
         methods: {
-            onFileChange(e) {
+            onFileChange() {
 
                 const self = this
                 
@@ -40,12 +35,10 @@
                         complete (results) {
                             // eslint-disable-next-line no-console
 
-                            // self.csvFile = JSON.stringify(results.data, null, 2)
 
-
-                            var homeMarkers = new Array();
+                            let homeMarkers = new Array();
                             
-                            // pull the lat/lon out and make a 'position' object for marker
+                            // pull the lat/lon out and make 'position' and 'data' objects for marker
                             results.data.forEach(row => {
                                 let lat = parseFloat(row['Latitude']);
                                 let lon = parseFloat(row['Longitude']);

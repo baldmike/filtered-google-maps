@@ -8,7 +8,7 @@ export default new Vuex.Store({
 
     state() {
         return {
-            file: null
+            file: null,
         }
     },
     
@@ -33,6 +33,7 @@ export default new Vuex.Store({
         setFile(context, payload) {
 
             context.commit('setFile', payload)
+            
         },
     }
 })
