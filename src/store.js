@@ -16,7 +16,7 @@ export default new Vuex.Store({
         // getters get data from state and are available in components
 
         // !! returns a boolean
-        isFile: state => !!state.file,
+        dataFile: state => state.file,
     },
 
     mutations: {
