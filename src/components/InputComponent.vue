@@ -8,7 +8,6 @@
         <b-row class="instructions">
             <b-col>
                 <p>Select any .csv file with 'Latitude' and 'Longitude'</p>
-                <p> click the group pin to zoom and expose individual pins. Click individual pins to see address</p>
             </b-col>
         </b-row>
     </div>
