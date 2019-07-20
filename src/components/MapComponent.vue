@@ -112,13 +112,16 @@
                 <br>
 
                 <b-row>
-                    <b-col cols="12">
+                    <b-col>
+                        <h3 v-if="!this.$store.state.file">Please upload a CSV file.</h3>
+                    </b-col>
+                    <b-col cols="12" v-if="this.$store.state.file">
                         <H6>NUMBER OF MATCHES: {{ numberOfResults }}</H6>
                     </b-col>
 
                     <br>
 
-                    <b-col cols="12">
+                    <b-col cols="12" v-if="this.$store.state.file">
                         <b-button @click="clearFilters" type="danger">Clear Filters</b-button>
                     </b-col>
                 </b-row>
