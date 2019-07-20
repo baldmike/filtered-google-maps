@@ -117,7 +117,7 @@
                     </b-col>
 
                     <br>
-                    
+
                     <b-col cols="12">
                         <b-button @click="clearFilters" type="danger">Clear Filters</b-button>
                     </b-col>
@@ -173,9 +173,6 @@
                 },
                 
                 filteredResults: null,
-                
-                
-                
                 clear: false,
                 filters: {
                     Zip: null,
@@ -208,7 +205,7 @@
             toggleInfo(marker, key) {
                 this.theM = marker
                 this.infoPosition = this.getPosition(marker.position)
-                this.infoContent = marker.data["ESTIMATED_MARKET_VALUE"]
+                this.infoContent = marker.data["Full Address"]
                 if (this.infoCurrentKey == key) {
                     this.infoOpened = !this.infoOpened
                 } else {
@@ -228,6 +225,8 @@
                 this.maximumValue = null;
                 this.minimumCurrentLandValue = null;
                 this.maximumCurrentLandValue = null;
+                this.minimumCurrentBuildingValue = null;
+                this.maximumCurrentBuildingValue = null;
             },
             icon(m) {
                 let value = m.data["ESTIMATED_MARKET_VALUE"];
@@ -301,7 +300,7 @@
                 }
 
                 if(this.filters.maximumCurrentLandValue) {
-                    this.filteredResults = this.$store.state.file.filter(item => parseInt(item.data['CURRENT_LAND'].replace(/,/g, '')) <= self.filters.maximumCurrentLandValue);
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data['CURRENT_LAND'].replace(/,/g, '')) <= self.filters.maximumCurrentLandValue);
                 }
 
                 if(this.filters.minimumCurrentBuildingValue){
@@ -309,15 +308,8 @@
                 }
 
                 if(this.filters.maximumCurrentBuildingValue) {
-                    this.filteredResults = this.$store.state.file.filter(item => parseInt(item.data['CURRENT_BUILDING'].replace(/,/g, '')) <= self.filters.maximumCurrentBuildingValue);
-                }
-                
-
-                console.log("INSIDE FILTERED MARKERS COMPUTED PROPERTY")
-                
-                console.log(this.filteredResults)
-                
-                
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data['CURRENT_BUILDING'].replace(/,/g, '')) <= self.filters.maximumCurrentBuildingValue);
+                }    
                 return this.filteredResults;
             },
 
