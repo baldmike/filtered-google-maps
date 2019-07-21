@@ -3,7 +3,7 @@
         
         <b-row>
             
-            <b-col cols="6" class="sidebar">
+            <b-col cols="12" md="6" class="sidebar">
                 <br>
                 
                 <!-- Filters -->
@@ -131,7 +131,7 @@
                 </b-row>
             </b-col>
 
-            <b-col cols="6">
+            <b-col cols="12" md="6">
                 <GmapMap
                     :center="{lat:41.9, lng:-87.7}"
                     :zoom="12"
