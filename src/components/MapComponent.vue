@@ -303,7 +303,7 @@
                 }
 
                 if(this.filters.maximumValue) {
-                    this.filteredResults = this.$store.state.file.filter(item => parseInt(item.data["ESTIMATED_MARKET_VALUE"]) <= self.filters.maximumValue);
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["ESTIMATED_MARKET_VALUE"]) <= self.filters.maximumValue);
                 }
 
                 if(this.filters.minimumCurrentLandValue){
