@@ -126,7 +126,7 @@
                     <br>
 
                     <b-col cols="12" v-if="this.$store.state.file">
-                        <b-button @click="clearFilters" type="danger">Clear Filters</b-button>
+                        <b-button @click="clearFilters" type="danger">Clear All Filters</b-button>
                     </b-col>
                 </b-row>
             </b-col>
