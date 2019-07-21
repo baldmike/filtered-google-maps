@@ -1,14 +1,14 @@
 <template>
     <div class="container-fluid" id="app" >
-        <b-col cols="12">
-                <h6><a href="https://github.com/baldmike/filtered-google-maps">VIEW CODE</a></h6>
-            </b-col>
+        
         <b-row>
             
             <b-col cols="6" class="sidebar">
                 <br>
                 
                 <!-- Filters -->
+                <div class="header"><h2> FILTERS A LA CARTE </h2></div>
+                
                 <b-row v-if="$store.state.file">
                     <b-col cols="4"><h6>Estimated Market Value</h6></b-col>
                     <b-col cols="4" >
@@ -70,7 +70,7 @@
 
                     <b-col cols="4" >
                         <b-input-group size="md" prepend="Max $">
-                            <b-form-input v-model="filters.maximumCurrentLandTotalValue"></b-form-input>
+                            <b-form-input v-model="filters.maximumCurrentTotalValue"></b-form-input>
                         </b-input-group>
                     </b-col>
                 </b-row>
@@ -136,7 +136,7 @@
                     :center="{lat:41.9, lng:-87.7}"
                     :zoom="12"
                     map-type-id="terrain"
-                    style="width: 100%; height: 80vh;"
+                    style="width: 100%; height: 100vh;"
                     >
                     <!-- <gmap-cluster> -->
                             <gmap-info-window :options="infoOptions" :position="infoPosition" :opened="infoOpened" @closeclick="infoOpened=false">
@@ -154,9 +154,14 @@
                 </GmapMap>
             </b-col>
         </b-row>
+
+        <br>
+        
+        <b-col cols="12">
+            <h6><a href="https://github.com/baldmike/filtered-google-maps">VIEW CODE</a></h6>
+        </b-col>
     </div>
 </template>
-
 
 <script>
     import {gmapApi} from 'vue2-google-maps'
@@ -192,6 +197,8 @@
                     maximumCurrentLandValue: null,
                     minimumCurrentBuildingValue: null,
                     maximumCurrentBuildingValue: null,
+                    minimumCurrentTotalValue: null,
+                    maximumCurrentTotalValue: null,
                 },
                 applyFilters: false,
             }
@@ -217,20 +224,20 @@
             },
 
             clearFilters() {
-                this.clear = true;
+                this.applyFilters = false;
                 this.filters.Zip = null;
                 this.filters.OVACLS = null;
                 this.filters.CLASS_DESCRIPTION = null;
                 this.filters.RES_TYPE = null;
                 this.filters.NEIGHBORHOOD = null;
-                this.minimumValue = null;
-                this.maximumValue = null;
-                this.minimumCurrentLandValue = null;
-                this.maximumCurrentLandValue = null;
-                this.minimumCurrentBuildingValue = null;
-                this.maximumCurrentBuildingValue = null;
-                this.minimumTotalValue = null;
-                this.maximumTotalValue = null;
+                this.filters.minimumValue = null;
+                this.filters.maximumValue = null;
+                this.filters.minimumCurrentLandValue = null;
+                this.filters.maximumCurrentLandValue = null;
+                this.filters.minimumCurrentBuildingValue = null;
+                this.filters.maximumCurrentBuildingValue = null;
+                this.filters.minimumTotalValue = null;
+                this.filters.maximumTotalValue = null;
             },
             icon(m) {
                 let value = m.data["ESTIMATED_MARKET_VALUE"];
@@ -272,48 +279,57 @@
                 }
 
                 if(this.filters.Zip){
-                    this.filteredResults = this.$store.state.file.filter(item => item.data['Zip'] == self.filters.Zip);
+                    this.filteredResults = this.$store.state.file.filter(item => item.data["Zip"] == self.filters.Zip);
                 }
 
                 if(this.filters.OVACLS){
-                    this.filteredResults = this.filteredResults.filter(item => item.data['OVACLS'] == self.filters.OVACLS);
+                    this.filteredResults = this.filteredResults.filter(item => item.data["OVACLS"] == self.filters.OVACLS);
                 }
 
                 if(this.filters.CLASS_DESCRIPTION){
-                    this.filteredResults = this.filteredResults.filter(item => item.data['CLASS_DESCRIPTION'] == self.filters.CLASS_DESCRIPTION);
+                    this.filteredResults = this.filteredResults.filter(item => item.data["CLASS_DESCRIPTION"] == self.filters.CLASS_DESCRIPTION);
                 }
 
                 if(this.filters.RES_TYPE){
-                    this.filteredResults = this.filteredResults.filter(item => item.data['RES_TYPE'] == self.filters.RES_TYPE);
+                    this.filteredResults = this.filteredResults.filter(item => item.data["RES_TYPE"] == self.filters.RES_TYPE);
                 }
 
                 if(this.filters.NEIGHBORHOOD){
-                    this.filteredResults = this.filteredResults.filter(item => item.data['NEIGHBORHOOD'] == self.filters.NEIGHBORHOOD);
+                    this.filteredResults = this.filteredResults.filter(item => item.data["NEIGHBORHOOD"] == self.filters.NEIGHBORHOOD);
                 }
 
                 if(this.filters.minimumValue){
-                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data['ESTIMATED_MARKET_VALUE'].replace(/,/g, '')) >= self.filters.minimumValue)
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["ESTIMATED_MARKET_VALUE"]) >= self.filters.minimumValue)
                 }
 
                 if(this.filters.maximumValue) {
-                    this.filteredResults = this.$store.state.file.filter(item => parseInt(item.data['ESTIMATED_MARKET_VALUE'].replace(/,/g, '')) <= self.filters.maximumValue);
+                    this.filteredResults = this.$store.state.file.filter(item => parseInt(item.data["ESTIMATED_MARKET_VALUE"]) <= self.filters.maximumValue);
                 }
 
                 if(this.filters.minimumCurrentLandValue){
-                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data['CURRENT_LAND'].replace(/,/g, '')) >= self.filters.minimumCurrentLandValue)
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["CURRENT_LAND"]) >= self.filters.minimumCurrentLandValue)
                 }
 
                 if(this.filters.maximumCurrentLandValue) {
-                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data['CURRENT_LAND'].replace(/,/g, '')) <= self.filters.maximumCurrentLandValue);
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["CURRENT_LAND"]) <= self.filters.maximumCurrentLandValue);
                 }
 
                 if(this.filters.minimumCurrentBuildingValue){
-                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data['CURRENT_BUILDING'].replace(/,/g, '')) >= self.filters.minimumCurrentBuildingValue)
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["CURRENT_BUILDING"]) >= self.filters.minimumCurrentBuildingValue)
                 }
 
                 if(this.filters.maximumCurrentBuildingValue) {
-                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data['CURRENT_BUILDING'].replace(/,/g, '')) <= self.filters.maximumCurrentBuildingValue);
-                }    
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["CURRENT_BUILDING"]) <= self.filters.maximumCurrentBuildingValue);
+                }
+                
+                if(this.filters.minimumCurrentTotalValue){
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["CURRENT_TOTAL"]) >= self.filters.minimumCurrentTotalValue)
+                }
+
+                if(this.filters.maximumCurrentTotalValue) {
+                    this.filteredResults = this.filteredResults.filter(item => parseInt(item.data["CURRENT_TOTAL"]) <= self.filters.maximumCurrentTotalValue);
+                } 
+                
                 return this.filteredResults;
             },
 
@@ -321,20 +337,15 @@
                 if(this.filteredResults) {
                     return this.filteredResults.length;
                 }
-
                 return 0;
             },
 
             google: gmapApi,
 
-            
-
-
             // ----------------------------------CREATE SELECT OPTIONS
 
-            // create the zip code select options
+            // create each select options
             zip() {
-                
                 
                 let homes = this.$store.state.file;
                 let zipArray = new Array();
@@ -350,11 +361,9 @@
                     }
                 });
                 return zipArray;
-                
             },
 
             ovacls() {
-                
                 
                 let homes = this.$store.state.file;
                 let ovaclsArray = new Array();
@@ -370,7 +379,6 @@
                     }
                 });
                 return ovaclsArray;
-            
             },
 
             class_description() {
@@ -390,7 +398,6 @@
                     }
                 });
                 return classDescriptionArray;
-                
             },
             
             res_type() {
@@ -410,37 +417,26 @@
                     }
                 });
                 return resTypeArray;
-                
             },
 
             neighborhood() {
 
-                
                 let homes = this.$store.state.file;
                 let neighborhoodArray = new Array();
 
                 homes.forEach(object => {
                     
-                    // grab the neighborhood
+                    // grab the hood
                     let neighborhood = object['data']['NEIGHBORHOOD'];
                     
-                    // if it's not in the array, push it in
+                    // if it's not in the array, push the hood on in
                     if (neighborhoodArray.indexOf(neighborhood) === -1) {
                         neighborhoodArray.push(neighborhood)
                     }
                 });
-                return neighborhoodArray;
-                
+                return neighborhoodArray;  
             },
         },
-        
-        created() {
-            
-        },
-
-        mounted() {
-
-        }
     }
 </script>
 

@@ -36,7 +36,6 @@ export default new Vuex.Store({
 
             context.commit('setFile', homeMarkers)
             
-            
         },
     }
 })
