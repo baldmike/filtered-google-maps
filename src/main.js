@@ -4,12 +4,9 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './store'
-
 import * as VueGoogleMaps from 'vue2-google-maps'
 import {GmapMarker} from 'vue2-google-maps/dist/components/marker'
 import GmapCluster from 'vue2-google-maps/dist/components/cluster'
-
-
 
 Vue.use(VueGoogleMaps, {
   load: {

@@ -1,6 +1,10 @@
 <template>
     <div class="container-fluid" id="app" >
+        <b-col cols="12">
+                <h6><a href="https://github.com/baldmike/filtered-google-maps">VIEW CODE</a></h6>
+            </b-col>
         <b-row>
+            
             <b-col cols="6" class="sidebar">
                 <br>
                 
@@ -130,7 +134,7 @@
             <b-col cols="6">
                 <GmapMap
                     :center="{lat:41.9, lng:-87.7}"
-                    :zoom="11"
+                    :zoom="12"
                     map-type-id="terrain"
                     style="width: 100%; height: 80vh;"
                     >
@@ -145,7 +149,7 @@
                             :icon="icon(m)"
                             :clickable="true"
                             :draggable="true"
-                            @click="toggleInfo(m, index)"/>
+                            @mouseover="toggleInfo(m, index)"/>
                     <!-- </gmap-cluster> -->
                 </GmapMap>
             </b-col>
@@ -174,7 +178,6 @@
                         height: -35
                     }
                 },
-                
                 filteredResults: null,
                 clear: false,
                 filters: {
@@ -195,10 +198,7 @@
         },
 
         methods: {
-            getPosition(marker) {
-                // eslint-disable-next-line
-                console.log("THE MARKER: " + marker);
-                
+            getPosition(marker) {            
                 return {
                     lat: parseFloat(marker.lat),
                     lng: parseFloat(marker.lng)
@@ -206,9 +206,8 @@
             },
 
             toggleInfo(marker, key) {
-                this.theM = marker
                 this.infoPosition = this.getPosition(marker.position)
-                this.infoContent = marker.data["Full Address"]
+                this.infoContent = marker.data["Full_Address"]
                 if (this.infoCurrentKey == key) {
                     this.infoOpened = !this.infoOpened
                 } else {
@@ -230,31 +229,33 @@
                 this.maximumCurrentLandValue = null;
                 this.minimumCurrentBuildingValue = null;
                 this.maximumCurrentBuildingValue = null;
+                this.minimumTotalValue = null;
+                this.maximumTotalValue = null;
             },
             icon(m) {
                 let value = m.data["ESTIMATED_MARKET_VALUE"];
                 
-                if(parseInt(value) < 400){
+                if(parseInt(value) < 400000){
                     return `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|00FF00|000000`
                 }
 
-                if(parseInt(value) < 500){
+                if(parseInt(value) < 500000){
                     return `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|FF4900|000000`
                 }
 
-                if(parseInt(value) < 600){
+                if(parseInt(value) < 600000){
                     return `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|FFA200|000000`
                 }
 
-                if(parseInt(value) < 700){
+                if(parseInt(value) < 700000){
                     return `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|FFE400|000000`
                 }
 
-                if(parseInt(value) < 800){
+                if(parseInt(value) < 800000){
                     return `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|C9FF00|000000`
                 }
 
-                if(parseInt(value) < 900){
+                if(parseInt(value) < 900000){
                     return `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|93FF00|000000`
                 }
 
@@ -334,6 +335,7 @@
             // create the zip code select options
             zip() {
                 
+                
                 let homes = this.$store.state.file;
                 let zipArray = new Array();
 
@@ -348,9 +350,11 @@
                     }
                 });
                 return zipArray;
+                
             },
 
             ovacls() {
+                
                 
                 let homes = this.$store.state.file;
                 let ovaclsArray = new Array();
@@ -366,9 +370,11 @@
                     }
                 });
                 return ovaclsArray;
+            
             },
 
             class_description() {
+                
                 
                 let homes = this.$store.state.file;
                 let classDescriptionArray = new Array();
@@ -384,9 +390,11 @@
                     }
                 });
                 return classDescriptionArray;
+                
             },
             
             res_type() {
+                
                 
                 let homes = this.$store.state.file;
                 let resTypeArray = new Array();
@@ -402,9 +410,11 @@
                     }
                 });
                 return resTypeArray;
+                
             },
 
             neighborhood() {
+
                 
                 let homes = this.$store.state.file;
                 let neighborhoodArray = new Array();
@@ -420,6 +430,7 @@
                     }
                 });
                 return neighborhoodArray;
+                
             },
         },
         
@@ -428,8 +439,6 @@
         },
 
         mounted() {
-            // eslint-disable-next-line
-            console.log(process.env.NODE_ENV);
 
         }
     }

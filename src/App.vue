@@ -1,9 +1,6 @@
 <template>
     <div class="container-fluid" id="app" >
         <b-row>
-            <b-col cols="4" offset="4">
-                <input-component/>
-            </b-col>
             <b-col cols="12">
                 <map-component></map-component>
             </b-col>
@@ -13,14 +10,12 @@
 
 <script>
 
-    import InputComponent from './components/InputComponent.vue'
     import MapComponent from './components/MapComponent.vue'
     
     export default {
         name: 'app',
 
         components: {
-            InputComponent,
             MapComponent
         },
 
@@ -31,7 +26,10 @@
         },
 
         mounted() {
-            // eslint-disable-next-line
+            
+            // set the datafile in the store when app mounts
+            this.$store.dispatch('setFile');
+
             console.log(process.env.NODE_ENV);
 
         }
@@ -48,7 +46,7 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 20px;
-        font-size: 12px;
+        font-size: 10px;
     }
 
 </style>
