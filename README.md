@@ -1,5 +1,7 @@
 # Filtered-Google-Maps
 
+Project Demo: https://baldmike.github.io/filtered-google-maps/
+
 ## Project setup
 ```
 npm install
