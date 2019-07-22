@@ -255,6 +255,45 @@
 
                 <br>
 
+                <b-row v-if="$store.state.file">
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.COMM_UNITS" :options="comm_units" class="sidebar">
+                            <option value="null" selected hidden disabled>Comm Units</option>
+                        </b-form-select>
+                    </b-col>
+
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.EXT_DESC" :options="ext_desc" class="sidebar">
+                            <option value="null" selected hidden disabled>Ext_Desc</option>
+                        </b-form-select>
+                    </b-col>
+                </b-row>
+
+                <br>
+
+                <b-row v-if="$store.state.file">
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.FULL_BATH" :options="full_bath" class="sidebar">
+                            <option value="null" selected hidden disabled>Full Bath</option>
+                        </b-form-select>
+                    </b-col>
+
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.HALF_BATH" :options="half_bath" class="sidebar">
+                            <option value="null" selected hidden disabled>Half Bath</option>
+                        </b-form-select>
+                    </b-col>
+                </b-row>
+
+                <br>
+
+
+
+
+
+
+
+
 
 
 
@@ -334,6 +373,10 @@
                     RES_TYPE: null,
                     BLDG_USE: null,
                     APT_DESC: null,
+                    COMM_UNITS: null,
+                    EXT_DESC: null,
+                    FULL_BATH: null,
+                    HALF_BATH: null,
 
                     minimumMarketValue: null,
                     maximumMarketValue: null,
@@ -532,6 +575,22 @@
 
                 if(this.filters.APT_DESC){
                     this.filteredResults = this.filteredResults.filter(item => item.data["APT_DESC"] == self.filters.APT_DESC);
+                }
+
+                if(this.filters.COMM_UNITS){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["COMM_UNITS"] == self.filters.COMM_UNITS);
+                }
+
+                if(this.filters.EXT_DESC){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["EXT_DESC"] == self.filters.EXT_DESC);
+                }
+
+                if(this.filters.COMM_UNITS){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["FULL_BATH"] == self.filters.COMM_UNITS);
+                }
+
+                if(this.filters.EXT_DESC){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["HALF_BATH"] == self.filters.EXT_DESC);
                 }
                                 
                 return this.filteredResults;
@@ -783,6 +842,78 @@
                 });
                 return apt_descArray;
             },
+
+            comm_units() {
+
+                let homes = this.$store.state.file;
+                let comm_unitsArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab the hood
+                    let comm_units = object['data']['COMM_UNITS'];
+                    
+                    // if it's not in the array, push the hood on in
+                    if (comm_units && comm_unitsArray.indexOf(comm_units) === -1) {
+                        comm_unitsArray.push(comm_units)
+                    }
+                });
+                return comm_unitsArray;  
+            },
+            
+            ext_desc() {
+                
+                let homes = this.$store.state.file;
+                let ext_descArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab it
+                    let ext_desc = object['data']['EXT_DESC'];
+                    
+                    // if it's not in the array, push it in
+                    if (ext_desc && ext_descArray.indexOf(ext_desc) === -1) {
+                        ext_descArray.push(ext_desc)
+                    }
+                });
+                return ext_descArray;
+            },
+
+            full_bath() {
+
+                let homes = this.$store.state.file;
+                let full_bathArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab the hood
+                    let full_bath = object['data']['FULL_BATH'];
+                    
+                    // if it's not in the array, push the hood on in
+                    if (full_bath && full_bathArray.indexOf(full_bath) === -1) {
+                        full_bathArray.push(full_bath)
+                    }
+                });
+                return full_bathArray;  
+            },
+            
+            half_bath() {
+                
+                let homes = this.$store.state.file;
+                let half_bathArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab it
+                    let half_bath = object['data']['HALF_BATH'];
+                    
+                    // if it's not in the array, push it in
+                    if (half_bath && half_bathArray.indexOf(half_bath) === -1) {
+                        half_bathArray.push(half_bath)
+                    }
+                });
+                return half_bathArray;
+            },
         },
     }
 </script>
@@ -790,7 +921,6 @@
 <style>
     #app {
         background-color: lightgrey;
-        min-height: 100vh;
-        max-height: 100vh;
+        min-height: 100%;
     }
 </style>
