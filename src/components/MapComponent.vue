@@ -17,7 +17,7 @@
 
                     <b-col cols="4" v-if="this.$store.state.file">
                         <div class="matchbox">
-                            <p>NUMBER OF MATCHES: {{ numberOfResults }}</p>
+                            <p style="font-size: 1rem">NUMBER OF MATCHES: {{ numberOfResults }}</p>
                         </div>
                     </b-col>
                 </b-row>
@@ -34,7 +34,7 @@
 
                     <b-col cols="6" >
                         <b-form-select size="sm" v-model="filters.Zip" :options="zip" class="sidebar">
-                            <option value="null" selected hidden disabled>Zip Code</option>
+                            <option value="null" selected disabled>Zip Code</option>
                 
                         </b-form-select>
                     </b-col>
@@ -45,13 +45,13 @@
                  <b-row v-if="$store.state.file">
                     <b-col cols="6" >
                         <b-form-select size="sm" v-model="filters.REC_TYPE" :options="rec_type" class="sidebar">
-                            <option value="null" selected hidden disabled>REC_TYPE</option>
+                            <option value="null" selected disabled>REC_TYPE</option>
                 
                         </b-form-select>
                     </b-col>
                     <b-col cols="6">
                         <b-form-select size="sm" v-model="filters.PIN" :options="pin" class="sidebar">
-                            <option value="null" selected hidden disabled>PIN</option>
+                            <option value="null" selected disabled>PIN</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -61,13 +61,13 @@
                 <b-row v-if="$store.state.file">
                     <b-col cols="6" >
                         <b-form-select size="sm" v-model="filters.OVACLS" :options="ovacls" class="sidebar">
-                            <option value="null" selected hidden disabled>OVACLS</option>
+                            <option value="null" selected disabled>OVACLS</option>
                         </b-form-select>
                     </b-col>
 
                     <b-col cols="6">
                         <b-form-select size="sm" v-model="filters.CLASS_DESCRIPTION" :options="class_description" class="sidebar">
-                            <option value="null" selected hidden disabled>Class Description</option>
+                            <option value="null" selected disabled>Class Description</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -196,12 +196,12 @@
                 <b-row v-if="$store.state.file">
                     <b-col>
                         <b-form-select size="sm" v-model="filters.TOWN" :options="town" class="sidebar">
-                            <option value="null" selected hidden disabled>Town</option>
+                            <option value="null" selected disabled>Town</option>
                         </b-form-select>
                     </b-col>
                     <b-col>
                         <b-form-select size="sm" v-model="filters.VOLUME" :options="volume" class="sidebar">
-                            <option value="null" selected hidden disabled>Volume</option>
+                            <option value="null" selected disabled>Volume</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -211,12 +211,12 @@
                 <b-row v-if="$store.state.file">
                     <b-col>
                         <b-form-select size="sm" v-model="filters.LOC" :options="loc" class="sidebar">
-                            <option value="null" selected hidden disabled>LOC</option>
+                            <option value="null" selected disabled>LOC</option>
                         </b-form-select>
                     </b-col>
                     <b-col>
                         <b-form-select size="sm" v-model="filters.TAX_CODE" :options="tax_code" class="sidebar">
-                            <option value="null" selected hidden disabled>Tax Code</option>
+                            <option value="null" selected disabled>Tax Code</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -226,13 +226,13 @@
                 <b-row v-if="$store.state.file">
                     <b-col>
                         <b-form-select size="sm" v-model="filters.NEIGHBORHOOD" :options="neighborhood" class="sidebar">
-                            <option value="null" selected hidden disabled>Neighborhood</option>
+                            <option value="null" selected disabled>Neighborhood</option>
                         </b-form-select>
                     </b-col>
 
                     <b-col>
                         <b-form-select size="sm" v-model="filters.RES_TYPE" :options="res_type" class="sidebar">
-                            <option value="null" selected hidden disabled>Res Type</option>
+                            <option value="null" selected disabled>Res Type</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -242,13 +242,13 @@
                 <b-row v-if="$store.state.file">
                     <b-col>
                         <b-form-select size="sm" v-model="filters.BLDG_USE" :options="bldg_use" class="sidebar">
-                            <option value="null" selected hidden disabled>Bldg Use</option>
+                            <option value="null" selected disabled>Bldg Use</option>
                         </b-form-select>
                     </b-col>
 
                     <b-col>
                         <b-form-select size="sm" v-model="filters.APT_DESC" :options="apt_desc" class="sidebar">
-                            <option value="null" selected hidden disabled>Apt_Desc</option>
+                            <option value="null" selected disabled>Apt_Desc</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -258,13 +258,13 @@
                 <b-row v-if="$store.state.file">
                     <b-col>
                         <b-form-select size="sm" v-model="filters.COMM_UNITS" :options="comm_units" class="sidebar">
-                            <option value="null" selected hidden disabled>Comm Units</option>
+                            <option value="null" selected disabled>Comm Units</option>
                         </b-form-select>
                     </b-col>
 
                     <b-col>
                         <b-form-select size="sm" v-model="filters.EXT_DESC" :options="ext_desc" class="sidebar">
-                            <option value="null" selected hidden disabled>Ext_Desc</option>
+                            <option value="null" selected disabled>Ext_Desc</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -274,13 +274,45 @@
                 <b-row v-if="$store.state.file">
                     <b-col>
                         <b-form-select size="sm" v-model="filters.FULL_BATH" :options="full_bath" class="sidebar">
-                            <option value="null" selected hidden disabled>Full Bath</option>
+                            <option value="null" selected disabled>Full Bath</option>
                         </b-form-select>
                     </b-col>
 
                     <b-col>
                         <b-form-select size="sm" v-model="filters.HALF_BATH" :options="half_bath" class="sidebar">
-                            <option value="null" selected hidden disabled>Half Bath</option>
+                            <option value="null" selected disabled>Half Bath</option>
+                        </b-form-select>
+                    </b-col>
+                </b-row>
+
+                <br>
+
+                <b-row v-if="$store.state.file">
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.BSMT_DESC" :options="bsmt_desc" class="sidebar">
+                            <option value="null" selected disabled>Basement</option>
+                        </b-form-select>
+                    </b-col>
+
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.ATTIC_DESC" :options="attic_desc" class="sidebar">
+                            <option value="null" selected disabled>Attic</option>
+                        </b-form-select>
+                    </b-col>
+                </b-row>
+
+                <br>
+
+                <b-row v-if="$store.state.file">
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.AC" :options="ac" class="sidebar">
+                            <option value="null" selected disabled>AC</option>
+                        </b-form-select>
+                    </b-col>
+
+                    <b-col>
+                        <b-form-select size="sm" v-model="filters.FIREPLACE" :options="fireplace" class="sidebar">
+                            <option value="null" selected disabled>Fireplace</option>
                         </b-form-select>
                     </b-col>
                 </b-row>
@@ -307,8 +339,8 @@
 
             <b-col cols="12" md="6">
                 <GmapMap
-                    :center="{lat:41.9, lng:-87.7}"
-                    :zoom="12"
+                    :center="{lat:41.9, lng:-87.67}"
+                    :zoom="13"
                     map-type-id="terrain"
                     style="width: 100%; height: 90vh;"
                     >
@@ -377,6 +409,10 @@
                     EXT_DESC: null,
                     FULL_BATH: null,
                     HALF_BATH: null,
+                    BSMT_DESC: null,
+                    ATTIC_DESC: null,
+                    AC: null,
+                    FIREPLACE: null,
 
                     minimumMarketValue: null,
                     maximumMarketValue: null,
@@ -585,12 +621,28 @@
                     this.filteredResults = this.filteredResults.filter(item => item.data["EXT_DESC"] == self.filters.EXT_DESC);
                 }
 
-                if(this.filters.COMM_UNITS){
-                    this.filteredResults = this.filteredResults.filter(item => item.data["FULL_BATH"] == self.filters.COMM_UNITS);
+                if(this.filters.FULL_BATH){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["FULL_BATH"] == self.filters.FULL_BATH);
                 }
 
-                if(this.filters.EXT_DESC){
-                    this.filteredResults = this.filteredResults.filter(item => item.data["HALF_BATH"] == self.filters.EXT_DESC);
+                if(this.filters.HALF_BATH){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["HALF_BATH"] == self.filters.HALF_BATH);
+                }
+
+                if(this.filters.BSMT_DESC){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["BSMT_DESC"] == self.filters.BSMT_DESC);
+                }
+
+                if(this.filters.ATTIC_DESC){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["ATTIC_DESC"] == self.filters.ATTIC_DESC);
+                }
+
+                if(this.filters.AC){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["AC"] == self.filters.AC);
+                }
+
+                if(this.filters.FIREPLACE){
+                    this.filteredResults = this.filteredResults.filter(item => item.data["FIREPLACE"] == self.filters.FIREPLACE);
                 }
                                 
                 return this.filteredResults;
@@ -732,7 +784,7 @@
                         volumeArray.push(volume)
                     }
                 });
-                return volumeArray;
+                return volumeArray.sort((a, b) => a - b);
             },
 
             loc() {
@@ -768,7 +820,7 @@
                         tax_codeArray.push(tax_code)
                     }
                 });
-                return tax_codeArray;
+                return tax_codeArray.sort((a, b) => a - b);
             },
 
             neighborhood() {
@@ -786,7 +838,7 @@
                         neighborhoodArray.push(neighborhood)
                     }
                 });
-                return neighborhoodArray;  
+                return neighborhoodArray.sort((a, b) => a - b);  
             },
             
             res_type() {
@@ -804,7 +856,7 @@
                         resTypeArray.push(resType)
                     }
                 });
-                return resTypeArray;
+                return resTypeArray.sort();
             },
 
             bldg_use() {
@@ -822,7 +874,7 @@
                         bldg_useArray.push(bldg_use)
                     }
                 });
-                return bldg_useArray;  
+                return bldg_useArray.sort();  
             },
             
             apt_desc() {
@@ -914,6 +966,78 @@
                 });
                 return half_bathArray;
             },
+
+            bsmt_desc() {
+
+                let homes = this.$store.state.file;
+                let bsmt_descArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab the hood
+                    let bsmt_desc = object['data']['BSMT_DESC'];
+                    
+                    // if it's not in the array, push the hood on in
+                    if (bsmt_desc && bsmt_descArray.indexOf(bsmt_desc) === -1) {
+                        bsmt_descArray.push(bsmt_desc)
+                    }
+                });
+                return bsmt_descArray;  
+            },
+            
+            attic_desc() {
+                
+                let homes = this.$store.state.file;
+                let attic_descArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab it
+                    let attic_desc = object['data']['ATTIC_DESC'];
+                    
+                    // if it's not in the array, push it in
+                    if (attic_desc && attic_descArray.indexOf(attic_desc) === -1) {
+                        attic_descArray.push(attic_desc)
+                    }
+                });
+                return attic_descArray;
+            },
+
+            ac() {
+
+                let homes = this.$store.state.file;
+                let acArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab the hood
+                    let ac = object['data']['AC'];
+                    
+                    // if it's not in the array, push the hood on in
+                    if (ac && acArray.indexOf(ac) === -1) {
+                        acArray.push(ac)
+                    }
+                });
+                return acArray;  
+            },
+            
+            fireplace() {
+                
+                let homes = this.$store.state.file;
+                let fireplaceArray = new Array();
+
+                homes.forEach(object => {
+                    
+                    // grab it
+                    let fireplace = object['data']['FIREPLACE'];
+                    
+                    // if it's not in the array, push it in
+                    if (fireplace && fireplaceArray.indexOf(fireplace) === -1) {
+                        fireplaceArray.push(fireplace)
+                    }
+                });
+                return fireplaceArray.sort((a, b) => a - b);
+            },
         },
     }
 </script>
@@ -921,6 +1045,6 @@
 <style>
     #app {
         background-color: lightgrey;
-        min-height: 100%;
+        min-height: 100vh;
     }
 </style>
