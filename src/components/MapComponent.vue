@@ -415,7 +415,7 @@
                 }
 
                 if(parseInt(value) > 1000000){
-                    return `http://maps.google.com/mapfiles/kml/pal3/icon56.png`
+                    return `https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|33cc33|000000`
                 }
 
                 return `https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=o|FF0000|000000`
