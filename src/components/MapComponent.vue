@@ -271,7 +271,7 @@
                     :center="{lat:41.9, lng:-87.7}"
                     :zoom="12"
                     map-type-id="terrain"
-                    style="width: 100%; height: 80vh;"
+                    style="width: 100%; height: 90vh;"
                     >
                     <!-- <gmap-cluster> -->
                             <gmap-info-window :options="infoOptions" :position="infoPosition" :opened="infoOpened" @closeclick="infoOpened=false">
