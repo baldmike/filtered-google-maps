@@ -76143,8 +76143,8 @@ export default
     },
     {
       Full_Address: "2638 W SUPERIOR ST, CHICAGO, IL",
-      Longitude: -87.6492365,
-      Latitude: 41.9302398999999,
+      Longitude: -87.693290,
+      Latitude: 41.894960,
       Zip: 60614,
       REC_TYPE: "A-HD",
       PIN: 16122010250000,
