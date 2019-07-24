@@ -6,6 +6,8 @@ The first challenge is parsing the data from and Excel .xlsx format into JSON. I
 
 Another challenge was the number of filters, and how to chain them. That's what Vue is for. I saw two working examples of this, and they both used a "set filters" approach, where the user sets whichever filters they want, and then clicks "Filter".  This misses the point of reactive data, and so a new array of filteredData and multiple computed properties did the trick. Now, the user can select *any* filter, in any order or combination, and the data is filtered live === reactive. You can't use a forEach loop for these computed properties, which initially felt necessary. Computed properties get 'computed' once and then the value is cached until *a dependent variable changes*. If you used a loop, you'd need to go thru each one to change that one updated value. Hence, a bazillion repeated computed properties.
 
+To run locally, follow the steps below, but know that you'll also need your own Google API key (and enable both maps and geocoding) - the one used here is restricted by the great Google itself, which is something you must do with your key. 
+
 Project Demo: https://baldmike.github.io/filtered-google-maps/
 
 ## Project setup
